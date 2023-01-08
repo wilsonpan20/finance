@@ -2,7 +2,7 @@ type User {
   id: ID! @unique
   name: String!
   email: String! @unique
-  passoword: String!
+  password: String!
 }
 
 type Account {
