@@ -18,7 +18,21 @@ async function  createAccount(_,{description},ctx,info){
     }
   },info)
 }
+async function  createCategory(_,{description,operation},ctx,info){
+  const userId = getUserId(ctx)
+  return ctx.db.mutation.createCategory({
+    data:{
+      description,
+      operation,
+      user:{
+        connect:{
+          id:userId
+        }
+      }
 
+    }
+  },info)
+}
 async function login(_, {email, password}, ctx, info){
   const user = await ctx.db.query.user({ where: { email }})
   if(!user){
@@ -55,6 +69,7 @@ async function  signup(_,args,ctx,ifon){
 
 module.exports ={
   createAccount,
+  createCategory,
   login,
   signup
   
