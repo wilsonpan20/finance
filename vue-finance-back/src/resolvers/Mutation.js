@@ -87,7 +87,7 @@ async function  signup(_,args,ctx,ifon){
   const password = await bcrypt.hash(args.password, 10)
   const user = await ctx.db.mutation.createUser({data:{...args, password}})
 
-  const token = jwt.sign({userId: user.id},JWT_SECRET,{expiresIn:'2h'})
+  const token = jwt.sign({userId: user.id},JWT_SECRET,{expiresIn:'10h'})
 
   return {
     token,
