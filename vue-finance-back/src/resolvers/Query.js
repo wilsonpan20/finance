@@ -95,7 +95,6 @@ function totalBalance(_, {date},ctx,info) {
 
   return ctx.prisma.$graphql(mutation,variables)
   .then(response =>{
-    console.log('reponse',response)
     const totalBalance = response.executeRaw[0].totalbalance
     return totalBalance ? totalBalance : 0 
   })
