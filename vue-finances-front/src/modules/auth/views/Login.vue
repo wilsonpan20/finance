@@ -8,14 +8,33 @@
           </v-toolbar>
           <v-card-text>
             <v-form>
-              <v-text-field v-if="!isLogin" v-model.trim="$v.user.name.$model" :success="!$v.user.name.$invalid"
-                prepend-icon="person" name="name" label="Nome" type="text " :error-messages="nameErrors"></v-text-field>
-              <v-text-field prepend-icon="email" name="email" label="Email" type="email "
-                v-model.trim="$v.user.email.$model" :success="!$v.user.email.$invalid"
-                :error-messages="emailErrors"></v-text-field>
-              <v-text-field prepend-icon="lock" name="password" label="Senha" :error-messages="passwordErrors"
-                type="password" :success="!$v.user.password.$invalid"
-                v-model.trim="$v.user.password.$model"></v-text-field>
+              <v-text-field
+              v-if="!isLogin"
+              prepend-icon="person" name="name"
+              label="Nome"
+              type="text "
+              v-model.trim="$v.user.name.$model"
+              :success="!$v.user.name.$invalid"
+              :error-messages="nameErrors"
+              ></v-text-field>
+              <v-text-field
+              prepend-icon="email"
+              name="email"
+              label="Email"
+              type="email "
+              v-model.trim="$v.user.email.$model"
+              :success="!$v.user.email.$invalid"
+              :error-messages="emailErrors"
+              ></v-text-field>
+              <v-text-field
+               prepend-icon="lock"
+               name="password"
+               label="Senha"
+               :error-messages="passwordErrors"
+               type="password"
+               :success="!$v.user.password.$invalid"
+                v-model.trim="$v.user.password.$model"
+                ></v-text-field>
             </v-form>
 
             <v-btn block depressed color="secondary" @click="isLogin = !isLogin">
