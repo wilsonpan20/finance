@@ -1,8 +1,8 @@
 <template>
-  <v-app dark>
-    <v-content>
+  <v-app :dark="true">
+    <v-main>
       <router-view />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -10,5 +10,6 @@
 
 export default {
   name: 'App'
+
 }
 </script>

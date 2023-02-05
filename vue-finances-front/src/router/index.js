@@ -4,10 +4,12 @@ import authRoutes from '@/modules/auth/router'
 
 Vue.use(VueRouter)
 
+const routes = [...authRoutes, { path: '', redirect: '/login' }]
+
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: [...authRoutes, { path: '', redirect: '/login' }]
+  routes
 })
 
 export default router
