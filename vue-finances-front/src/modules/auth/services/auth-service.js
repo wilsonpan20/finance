@@ -6,8 +6,8 @@ const login = async variables =>{
     mutation:LoginMutation,
     variables
   })
-  const login = response.data.login
-  onLogin(apollo,login.token)
+  const {login} = response.data
+  await onLogin(apollo,login.token)
   return login
 
 }
