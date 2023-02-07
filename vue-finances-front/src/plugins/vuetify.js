@@ -1,24 +1,23 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib/framework';
-import colors from 'vuetify/es5/util/colors';
-import pt from 'vuetify/lib/locale/pt';
+import Vue from 'vue'
+import Vuetify from 'vuetify/lib'
+import pt from 'vuetify/es5/locale/pt'
+import colors from 'vuetify/es5/util/colors'
+import 'vuetify/src/stylus/app.styl'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
-Vue.use(Vuetify);
-
-export default new Vuetify({
-  theme:{
-    primary: colors.red.darken1,
-    secondary: colors.red.lighten4, 
-    accent: colors.indigo.base,
-    dark:true
+Vue.use(Vuetify, {
+  iconfont: 'md',
+  lang: {
+    locales: { pt },
+    current: 'pt'
   },
-    lang: {
-      locales: { pt },
-      current: 'pt',
-    },
-  icons: {
-    iconfont: 'md',
-  },
-});
+  theme: {
+    primary: colors.teal.darken1,
+    accent: colors.indigo.darken1,
+    info: colors.blue,
+    error: colors.pink.darken2,
+    success: colors.teal.lighten1,
+    warning: colors.purple.darken1
+  }
+})
