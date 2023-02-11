@@ -122,11 +122,11 @@ export default {
     async submit () {
       this.isLoading = true
       try {
-        const authData = this.isLogin
+        this.isLogin
           ? await AuthService.login(this.user)
           : await AuthService.signup(this.user)
 
-        console.log('authData', authData)
+        this.$router.push(this.$route.query.redirect || '/dashboard')
       } catch (error) {
         console.log(error)
         this.error = formatError(error.message)
