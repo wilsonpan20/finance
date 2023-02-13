@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import authRoutes from '@/modules/auth/router'
 import dashboardRoutes from '@/modules/dashboard/router'
 import { AUTH_TOKEN } from '@/plugins/apollo'
-import AuthService from '@/modules/auth/services/auth-service'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -24,18 +24,13 @@ router.beforeEach(async (to, from, next) => {
     const token = window.localStorage.getItem(AUTH_TOKEN)
     const loginRoute = {
       path: '/login',
-      query: {
-        redirect: to.fullPath
-      }
+      query: { redirect: to.fullPath }
     }
     if (token) {
       try {
-        await AuthService.user({
-          fetchPolicy: 'network-only'
-        })
         return next()
       } catch (error) {
-        console.log('Auto login Error', error)
+        console.log('Auto Login Error: ', error)
         return next(loginRoute)
       }
     }
