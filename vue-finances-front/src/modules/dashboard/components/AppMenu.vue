@@ -12,7 +12,7 @@
         </v-list-tile-avatar>
         <v-list-tile-content>
           <v-list-tile-title>
-            User Name
+            {{ user.name }}
           </v-list-tile-title>
         </v-list-tile-content>
         <v-list-tile-action>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import authService from '@/modules/auth/services/auth-service'
 export default {
   name: 'AppMenu',
   props: {
@@ -47,8 +48,12 @@ export default {
     items: [
       { title: 'Home', icon: 'dashboard', url: '/dashboard', exact: true }
     ],
-    mini: false
-  })
+    mini: false,
+    user: {}
+  }),
+  async created () {
+    this.user = await authService.user()
+  }
 }
 
 </script>

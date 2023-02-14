@@ -1,4 +1,4 @@
-import { ApolloClient, HttpLink, InMemoryCache, ApolloLink } from 'apollo-boost'
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from 'apollo-boost'
 
 const AUTH_TOKEN = 'apollo-token'
 
@@ -6,7 +6,7 @@ const resetApolloClient = async apollo => {
   try {
     await apollo.resetStore()
   } catch (e) {
-    console.log('%Error on cache reset', 'color:orage;', e.message)
+    console.log('%cError on cache reset', 'color: orange;', e.message)
   }
 }
 
@@ -16,18 +16,31 @@ const onLogin = async (apollo, token) => {
   }
   await resetApolloClient(apollo)
 }
+
+const onLogout = async apollo => {
+  if (typeof window.localStorage !== 'undefined') {
+    window.localStorage.removeItem(AUTH_TOKEN)
+  }
+  await resetApolloClient(apollo)
+}
+
+const uri = process.env.VUE_APP_API_URL || 'http://localhost:4000'
+
 const link = new HttpLink({
-  uri: 'http://localhost:4000'
+  uri
 })
 
 const authLink = new ApolloLink((operation, forward) => {
   const { headers } = operation.getContext()
+
   operation.setContext({
     headers: {
       ...headers,
-      'Autorization': `Bearer ${window.localStorage.getItem(AUTH_TOKEN)}`
+      'Authorization': `Bearer ${window.localStorage.getItem(AUTH_TOKEN)}`
     }
+
   })
+
   return forward(operation)
 })
 
@@ -38,12 +51,12 @@ const apollo = new ApolloClient({
   ]),
   cache: new InMemoryCache(),
   connectToDevTools: process.env.NODE_ENV !== 'production'
-
 })
 
 export default apollo
 
 export {
   AUTH_TOKEN,
-  onLogin
+  onLogin,
+  onLogout
 }

@@ -27,7 +27,6 @@ const user = async (options = {}) => {
   const response = await apollo.query({
     query: UserQuery,
     ...options
-
   })
   return response.data.user
 }
