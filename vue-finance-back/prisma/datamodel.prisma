@@ -6,21 +6,21 @@ type User {
 }
 
 type Account {
-  id:ID! @unique
-  user:User
-  description: String
+  id: ID! @unique
+  user: User
+  description: String!
 }
-enum Operation {
-DEBIT
-CREDIT
 
+enum Operation {
+  DEBIT
+  CREDIT
 }
 
 type Category {
   id: ID! @unique
   user: User
   description: String!
-  operation:Operation!
+  operation: Operation!
 }
 
 type Record {
@@ -33,7 +33,5 @@ type Record {
   date: DateTime!
   description: String!
   tags: String
-  note:String
-
+  note: String
 }
-

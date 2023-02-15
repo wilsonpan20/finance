@@ -1,42 +1,39 @@
 scalar Date
 
-type Query{
-  accounts:[Account!]!
-  categories(operation:Operation):[Category!]!
+type Query {
+  accounts: [ Account! ]!
+  categories(operation: Operation): [ Category! ]!
   records(
     """
-    Month and Year, format "MM-YYYY" e.g.: 01-2023
+      Month and Year, format "MM-YYYY" e.g.: 06-2019
     """
-    month:String,
-    type:Operation,
-    accountIds:[ID!],
-    categoriesIds:[ID!]
-
-  ):[Record!]
-  
-  user:User
-   """
-    Year,Month and Day, format "YYYY-MM-DD" e.g.: 2023-01-01
-    """
-  totalBalance(date: Date!): Float
-
+    month: String,
+    type: Operation,
+    accountsIds: [ ID! ],
+    categoriesIds: [ ID! ]
+  ): [ Record! ]!
+  user: User
+  """
+    Year, Month and Day, format "YYYY-MM-DD" e.g.: 2019-06-19
+  """
+  totalBalance(date: Date!): Float!
 }
-type Mutation{
-  createAccount(description:String): Account!
-  createCategory(description:String!,operation:Operation!):Category!
-  createRecord(
-  accountId: ID!
-  categoryId: ID!
-  amount: Float!
-  type: Operation!
-  date: Date!
-  description: String!
-  tags: String
-  note:String
 
-  ):Record!
-  login(email:String!, password:String!): AuthPayload
-  signup(email:String!, password:String!, name:String!):AuthPayload
+type Mutation {
+  createAccount(description: String!): Account!
+  createCategory(description: String!, operation: Operation!): Category!
+  createRecord(
+    accountId: ID!
+    categoryId: ID!
+    amount: Float!
+    type: Operation!
+    date: Date!
+    description: String!
+    tags: String
+    note: String
+  ): Record!
+  login(email: String!, password: String!): AuthPayload
+  signup(email: String!, password: String!, name: String!): AuthPayload
 }
 
 type AuthPayload {
@@ -45,31 +42,31 @@ type AuthPayload {
 }
 
 type User {
-  id: ID! 
+  id: ID!
   name: String!
   email: String!
 }
 
-type Account{
-  id:ID!
-  user:User
-  description:String!
+type Account {
+  id: ID!
+  user: User
+  description: String!
 }
 
 enum Operation {
-DEBIT
-CREDIT
-
+  DEBIT
+  CREDIT
 }
 
 type Category {
-  id: ID! 
+  id: ID!
   user: User
   description: String!
-  operation:Operation!
+  operation: Operation!
 }
+
 type Record {
-  id: ID! 
+  id: ID!
   user: User!
   account: Account!
   category: Category!
@@ -78,6 +75,5 @@ type Record {
   date: Date!
   description: String!
   tags: String
-  note:String
-
+  note: String
 }
