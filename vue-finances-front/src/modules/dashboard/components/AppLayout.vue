@@ -2,8 +2,16 @@
   <div>
     <app-toobar v-model="drawer" />
     <app-menu v-model="drawer" />
+    <v-container>
+      <v-layout grid-list-md>
+        <v-flex xs12>
+          <slot />
+        </v-flex>
+      </v-layout>
+    </v-container>
+
   </div>
-</template> 
+</template>
 
 <script>
 import AppMenu from './AppMenu.vue'
@@ -16,4 +24,5 @@ export default {
   })
 }
 
-</script> 
+
+</script>
