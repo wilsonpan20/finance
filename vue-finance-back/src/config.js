@@ -10,7 +10,7 @@ const playground = isProduction ? false : '/'
 module.exports = {
   endpoint,
   env,
-  isProduction,git,
+  isProduction,
   origin,
   playground,
   secret
