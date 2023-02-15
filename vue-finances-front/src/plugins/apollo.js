@@ -24,7 +24,7 @@ const onLogout = async apollo => {
   await resetApolloClient(apollo)
 }
 
-const uri = process.env.VUE_APP_API_URL || 'http://localhost:4000'
+const uri = 'http://localhost:4000'
 
 const link = new HttpLink({
   uri
@@ -32,15 +32,12 @@ const link = new HttpLink({
 
 const authLink = new ApolloLink((operation, forward) => {
   const { headers } = operation.getContext()
-
   operation.setContext({
     headers: {
       ...headers,
       'Authorization': `Bearer ${window.localStorage.getItem(AUTH_TOKEN)}`
     }
-
   })
-
   return forward(operation)
 })
 
