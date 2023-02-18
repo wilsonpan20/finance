@@ -24,7 +24,7 @@ const onLogout = async apollo => {
   await resetApolloClient(apollo)
 }
 
-const uri = 'http://localhost:4000'
+const uri = 'http://192.168.0.2:4000'
 
 const link = new HttpLink({
   uri

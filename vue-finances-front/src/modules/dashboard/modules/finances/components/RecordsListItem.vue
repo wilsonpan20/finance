@@ -5,17 +5,21 @@
     </v-list-tile-avatar>
     <v-list-tile-content>
       <v-list-tile-title>{{ record.description }}</v-list-tile-title>
-      <v-list-tile-sub-title>{{ record.category.description }}| {{ record.account.description }}</v-list-tile-sub-title>
+      <v-list-tile-sub-title>{{ record.category.description }} | {{
+        record.account.description
+      }}</v-list-tile-sub-title>
     </v-list-tile-content>
     <v-list-tile-action>
-      <span :class="amountColor(record.amount)">{{ record.amount }}</span>
+      <span :class="amountColor(record.amount)">{{ formatCurrency(record.amount) }}</span>
     </v-list-tile-action>
   </v-list-tile>
 </template>
 
 <script>
+import formatCurrencyMixin from '@/mixins/format-currency'
 export default {
   name: 'RecordsListItem',
+  mixins: [formatCurrencyMixin],
   props: {
     record: Object
   },
