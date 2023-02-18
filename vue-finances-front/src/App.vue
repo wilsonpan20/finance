@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app git >
     <v-content>
       <router-view />
     </v-content>

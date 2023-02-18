@@ -1,8 +1,9 @@
 <template>
-  <v-list two-line>
+  <v-list two-line subheader>
+    <v-subheader>05/02/2023</v-subheader>
     <RecordsListItem v-for="record in records" :key="record.id" :record="record" />
+    <v-divider></v-divider>
   </v-list>
-
 </template>
 
 <script>
