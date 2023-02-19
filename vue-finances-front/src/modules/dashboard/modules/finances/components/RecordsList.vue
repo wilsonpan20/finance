@@ -1,6 +1,6 @@
 <template>
   <div>
-    <toolbar-by-month class="mb-2" />
+    <toolbar-by-month class="mb-2" format="MM-YYYY" @month="changeMonth" />
     <v-card>
       <v-list two-line subheader>
         <template v-for="(records, date, index) in mappedRecords">
@@ -57,6 +57,9 @@ export default {
   methods: {
     showDivider (index, object) {
       return index < Object.keys(object).length - 1
+    },
+    changeMonth (month) {
+      console.log('Month', month)
     }
   }
 }
