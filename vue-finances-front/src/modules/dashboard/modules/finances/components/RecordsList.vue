@@ -1,6 +1,7 @@
 <template>
   <div>
-    <toolbar-by-month class="mb-2" format="MM-YYYY" @month="changeMonth" :color="toolbarColor" />
+    <toolbar-by-month class="mb-2" format="MM-YYYY" @month="changeMonth" :color="toolbarColor"
+      :month="$route.query.month" />
     <v-card>
       <v-card-text class="text-xs-center" v-if="mappedRecordsLenght === 0">
         <v-icon size="100" color="grey">assignment</v-icon>
@@ -69,6 +70,10 @@ export default {
       return index < Object.keys(object).length - 1
     },
     changeMonth (month) {
+      this.$router.push({
+        path: this.$route.path,
+        query: { month }
+      })
       this.setRecords(month)
     },
     async setRecords (month) {
