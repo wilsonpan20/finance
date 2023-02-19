@@ -1,21 +1,24 @@
 <template>
-  <v-card>
-    <v-list two-line subheader>
-      <template v-for="(records, date, index) in mappedRecords">
-        <v-subheader :key="date">{{ date }}</v-subheader>
-        <RecordsListItem v-for="record in records" :key="record.id" :record="record" />
-        <v-divider :key="`${date}-${index}`" v-if="showDivider(index, mappedRecords)"></v-divider>
-      </template>
-    </v-list>
-    <v-footer class="pa-2">
-      <v-flex text-xs-right>
-        <h3 class="font-weight-light">
-          <span>Saldo do mês:</span>
-          <strong class="ml-5" :class="amountColor(totalAmount)"> {{ formatCurrency(totalAmount) }}</strong>
-        </h3>
-      </v-flex>
-    </v-footer>
-  </v-card>
+  <div>
+    <toolbar-by-month class="mb-2" />
+    <v-card>
+      <v-list two-line subheader>
+        <template v-for="(records, date, index) in mappedRecords">
+          <v-subheader :key="date">{{ date }}</v-subheader>
+          <RecordsListItem v-for="record in records" :key="record.id" :record="record" />
+          <v-divider :key="`${date}-${index}`" v-if="showDivider(index, mappedRecords)"></v-divider>
+        </template>
+      </v-list>
+      <v-footer class="pa-2">
+        <v-flex text-xs-right>
+          <h3 class="font-weight-light">
+            <span>Saldo do mês:</span>
+            <strong class="ml-5" :class="amountColor(totalAmount)"> {{ formatCurrency(totalAmount) }}</strong>
+          </h3>
+        </v-flex>
+      </v-footer>
+    </v-card>
+  </div>
 </template>
 
 <script>
@@ -25,11 +28,13 @@ import { groupBy } from '@/utils'
 import moment from 'moment'
 import RecordsListItem from './RecordsListItem.vue'
 import RecordsServices from './../services/records-services'
+import ToolbarByMonth from './ToolbarByMonth.vue'
 export default {
   name: 'RecordsList',
   mixins: [amountColorMixin, formatCurrencyMixin],
   components: {
-    RecordsListItem
+    RecordsListItem,
+    ToolbarByMonth
   },
   data: () => ({
     records: []
