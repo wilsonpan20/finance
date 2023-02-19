@@ -66,7 +66,6 @@ export default {
       return index < Object.keys(object).length - 1
     },
     changeMonth (month) {
-      console.log('Month', month)
       this.setRecords(month)
     },
     async setRecords (month) {
