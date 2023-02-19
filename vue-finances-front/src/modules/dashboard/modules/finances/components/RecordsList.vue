@@ -2,7 +2,14 @@
   <div>
     <toolbar-by-month class="mb-2" format="MM-YYYY" @month="changeMonth" />
     <v-card>
-      <v-list two-line subheader>
+      <v-card-text class="text-xs-center" v-if="mappedRecordsLenght === 0">
+        <v-icon size="100" color="grey">assignment</v-icon>
+        <p class="font-weigth-light subheading grey--text">
+          Nenhum lançamento no período
+        </p>
+
+      </v-card-text>
+      <v-list two-line subheader v-else>
         <template v-for="(records, date, index) in mappedRecords">
           <v-subheader :key="date">{{ date }}</v-subheader>
           <RecordsListItem v-for="record in records" :key="record.id" :record="record" />
@@ -44,6 +51,9 @@ export default {
       return groupBy(this.records, 'date', (record, dateKey) => {
         return moment(record[dateKey]).format('DD/MM/YYYY')
       })
+    },
+    mappedRecordsLenght () {
+      return Object.keys(this.mappedRecords).length
     },
     totalAmount () {
       return this.records.reduce((sum, record) => sum + record.amount, 0)
