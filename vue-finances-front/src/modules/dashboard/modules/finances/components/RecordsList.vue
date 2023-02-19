@@ -1,6 +1,6 @@
 <template>
   <div>
-    <toolbar-by-month class="mb-2" format="MM-YYYY" @month="changeMonth" />
+    <toolbar-by-month class="mb-2" format="MM-YYYY" @month="changeMonth" :color="toolbarColor" />
     <v-card>
       <v-card-text class="text-xs-center" v-if="mappedRecordsLenght === 0">
         <v-icon size="100" color="grey">assignment</v-icon>
@@ -57,6 +57,9 @@ export default {
     },
     totalAmount () {
       return this.records.reduce((sum, record) => sum + record.amount, 0)
+    },
+    toolbarColor () {
+      return this.totalAmount < 0 ? 'error' : 'primary'
     }
 
   },
