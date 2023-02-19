@@ -51,15 +51,16 @@ export default {
 
   },
 
-  async created () {
-    this.records = await RecordsServices.records()
-  },
   methods: {
     showDivider (index, object) {
       return index < Object.keys(object).length - 1
     },
     changeMonth (month) {
       console.log('Month', month)
+      this.setRecords(month)
+    },
+    async setRecords (month) {
+      this.records = await RecordsServices.records({ month })
     }
   }
 }
