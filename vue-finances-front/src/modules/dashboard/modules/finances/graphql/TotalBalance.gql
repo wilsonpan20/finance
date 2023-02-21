@@ -1,3 +1,3 @@
-query TotalBalance ($date: Date!) {
+query TotalBalance($date: Date!) {
   totalBalance(date: $date)
 }

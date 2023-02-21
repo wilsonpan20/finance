@@ -18,7 +18,7 @@ const totalBalance = async () => {
       date: moment().format('YYYY-MM-DD')
     }
   })
-  return response.totalBalance
+  return response.data.totalBalance
 }
 
 export default {
